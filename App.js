@@ -56,7 +56,7 @@ function AuthenticatedTab() {
         }}
       />
       <Tab.Screen
-        name="Posts"
+        name="Explore"
         component={ExploreScreen}
         options={{
           tabBarIcon: ({ focused, size }) => (

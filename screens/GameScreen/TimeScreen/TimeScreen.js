@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native"
-export default function SigninScreen(){
+export default function TimeScreen(){
     return (
         <View style={styles.rootContainer}>
           <Text>
-            This is the <Text style={styles.highlight}>"Signin"</Text> screen!
+            This is the <Text style={styles.highlight}>"Time"</Text> screen!
           </Text>
         </View>
       );

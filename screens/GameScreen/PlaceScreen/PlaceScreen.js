@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native"
-export default function SigninScreen(){
+import FloatingButton from "../components/ui/FloatingButton";
+export default function PlaceScreen(){
     return (
         <View style={styles.rootContainer}>
           <Text>
-            This is the <Text style={styles.highlight}>"Signin"</Text> screen!
+            This is the <Text style={styles.highlight}>"Place"</Text> screen!
           </Text>
         </View>
       );
