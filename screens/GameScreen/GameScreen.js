@@ -6,21 +6,21 @@ import FloatingButton from "./components/ui/FloatingButton";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function GameScreen(){
-    return (
-      <View style={styles.rootContainer}>
-        <View style={styles.navContainer}>
+export default function GameScreen() {
+  return (
+    <View style={styles.rootContainer}>
+      <View style={styles.navContainer}>
         <Tab.Navigator
           screenOptions={{
-            tabBarLabelStyle:{
+            tabBarLabelStyle: {
               fontSize: 15
             },
             tabBarActiveTintColor: "white",
             tabBarInactiveTintColor: "black",
             tabBarIndicatorContainerStyle: {
-             display:'none'
+              display: 'none'
             },
-            
+
             tabBarStyle: {
               backgroundColor: "#F5B502",
               position: "absolute",
@@ -34,19 +34,25 @@ export default function GameScreen(){
           <Tab.Screen name="Place" component={PlaceScreen} />
           <Tab.Screen name="Time" component={TimeScreen} />
         </Tab.Navigator>
-        </View>
-        <FloatingButton style={{ bottom: 100 }}/>
       </View>
-        
-      );
+      <View style={styles.floatingButton}>
+        <FloatingButton style={{ bottom: 100 }} />
+      </View>
+    </View>
+
+  );
 }
 
 const styles = StyleSheet.create({
-  rootContainer:{
+  rootContainer: {
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     flex: 1,
   },
-  navContainer:{
+  navContainer: {
     flex: 1,
+  },
+  floatingButton: {
+    position: 'flex',
+    right:'-85%'
   }
 })

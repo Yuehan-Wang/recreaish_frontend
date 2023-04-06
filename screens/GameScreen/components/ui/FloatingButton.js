@@ -10,7 +10,8 @@ export default class FloatingButton extends React.Component {
 
         Animated.spring(this.animation, {
             toValue,
-            friction: 5
+            friction: 5,
+            useNativeDriver: false,
         }).start();
 
         this.open = !this.open;
@@ -73,19 +74,19 @@ export default class FloatingButton extends React.Component {
             <View style={[styles.container, this.props.style]}>
                 <TouchableWithoutFeedback>
                     <Animated.View style={[styles.button, styles.secondary, heartStyle, opacity]}>
-                        <AntDesign name="hearto" size={20} color="#F02A4B" />
+                        <AntDesign name="hearto" size={20} color="#0050B6" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback>
                     <Animated.View style={[styles.button, styles.secondary, thumbStyle, opacity]}>
-                        <Entypo name="thumbs-up" size={20} color="#F02A4B" />
+                        <Entypo name="thumbs-up" size={20} color="#0050B6" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback>
                     <Animated.View style={[styles.button, styles.secondary, pinStyle, opacity]}>
-                        <Entypo name="location-pin" size={20} color="#F02A4B" />
+                        <Entypo name="location-pin" size={20} color="#0050B6" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
@@ -112,12 +113,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         shadowRadius: 10,
-        shadowColor: "#F02A4B",
+        shadowColor: "#0050B6",
         shadowOpacity: 0.3,
         shadowOffset: { height: 10 }
     },
     menu: {
-        backgroundColor: "#F02A4B"
+        backgroundColor: "#0050B6"
     },
     secondary: {
         width: 48,

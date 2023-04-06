@@ -1,23 +1,22 @@
 import { View, Text, StyleSheet } from "react-native"
-import FloatingButton from "../components/ui/FloatingButton";
+import Map from "../TimeScreen/components/Map";
+
 export default function PlaceScreen(){
     return (
-        <View style={styles.rootContainer}>
-          <Text>
-            This is the <Text style={styles.highlight}>"Place"</Text> screen!
-          </Text>
+        <View style={styles.mapContainer}>
+          <Map/>
         </View>
       );
 }
 
 const styles = StyleSheet.create({
-    rootContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    highlight: {
-      fontWeight: 'bold',
-      color: 'orange',
+    mapContainer: {
+      position:'absolute',
+      top:'20%',
+      left:'15%',
+      width: '70%',
+      height:'40%',
+      overflow:'hidden',
+      borderRadius:20
     },
   });
