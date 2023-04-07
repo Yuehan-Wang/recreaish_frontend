@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
       width: '70%',
       height:'40%',
       overflow:'hidden',
-      borderRadius:20
+      borderRadius:20,
+      borderColor:'#F5B502',
+      borderWidth: 2
     },
   });

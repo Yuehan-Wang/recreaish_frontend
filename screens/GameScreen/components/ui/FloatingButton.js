@@ -72,15 +72,10 @@ export default class FloatingButton extends React.Component {
 
         return (
             <View style={[styles.container, this.props.style]}>
-                <TouchableWithoutFeedback>
-                    <Animated.View style={[styles.button, styles.secondary, heartStyle, opacity]}>
-                        <AntDesign name="hearto" size={20} color="#0050B6" />
-                    </Animated.View>
-                </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback>
                     <Animated.View style={[styles.button, styles.secondary, thumbStyle, opacity]}>
-                        <Entypo name="thumbs-up" size={20} color="#0050B6" />
+                        <Entypo name="calendar" size={20} color="#0050B6" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
 
