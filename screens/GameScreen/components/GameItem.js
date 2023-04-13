@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons/build/Icons";
 import ProfilePicturesList from "./ui/ProfilePicturesList";
 
@@ -26,13 +26,24 @@ const GameItem = ({ title, location, time, joined, participants }) => {
           </View>
         </View>
 
-        <View>
+        <View style={styles.rightContainer}>
           <View style={styles.locationContainer}>
           <EvilIcons name='location' size={18} color='black' />
             <Text style={styles.locationText}>
             {location}
             </Text>
           </View>
+          <View style={styles.buttonContainer}>
+              {joined ? (
+                <TouchableOpacity style={styles.button} onPress={() => console.log("Share pressed")}>
+                  <EvilIcons name="share-google" size={30} color="grey" />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity style={styles.button} onPress={() => console.log("Join pressed")}>
+                  <EvilIcons name="plus" size={30} color="grey" />
+                </TouchableOpacity>
+              )}
+        </View>
         </View>
 
       </View>
@@ -43,7 +54,7 @@ const GameItem = ({ title, location, time, joined, participants }) => {
 const styles = StyleSheet.create({
   rootContainer: {
     margin: "1%",
-    borderRadius: 20,
+    borderRadius: 15,
   },
   title: {
     fontWeight: "bold",
@@ -56,7 +67,8 @@ const styles = StyleSheet.create({
   },
   leftContainer:{
     flex:1,
-    flexDirection:'column'
+    flexDirection:'column',
+    justifyContent:'space-between'
   },
   locationContainer:{
     flexDirection: 'row',
@@ -64,6 +76,16 @@ const styles = StyleSheet.create({
   },
   locationText:{
     fontSize:15
+  },
+  rightContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    alignSelf: "stretch",
+  },
+  buttonContainer:{
+    top:'-10%',
+    alignSelf: "flex-end",
   }
 });
 
