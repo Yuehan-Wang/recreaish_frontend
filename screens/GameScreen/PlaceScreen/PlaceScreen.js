@@ -13,8 +13,8 @@ export default function PlaceScreen() {
       Location: "Lakeview",
       description: "This is item 1",
       participants: [
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fprofile_3135715&psig=AOvVaw2_wvK-XuXE97-IspACFFdk&ust=1681488844305000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiCqZygp_4CFQAAAAAdAAAAABAE",
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fprofile_3135715&psig=AOvVaw2_wvK-XuXE97-IspACFFdk&ust=1681488844305000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiCqZygp_4CFQAAAAAdAAAAABAE",
+        'https://picsum.photos/id/237/200/300',
+        'https://picsum.photos/id/238/200/300',
       ],
     },
     {
@@ -25,9 +25,9 @@ export default function PlaceScreen() {
       Location: "Charles Mound",
       description: "This is item 1",
       participants: [
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fprofile_3135715&psig=AOvVaw2_wvK-XuXE97-IspACFFdk&ust=1681488844305000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiCqZygp_4CFQAAAAAdAAAAABAE",
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fprofile_3135715&psig=AOvVaw2_wvK-XuXE97-IspACFFdk&ust=1681488844305000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiCqZygp_4CFQAAAAAdAAAAABAE",
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fprofile_3135715&psig=AOvVaw2_wvK-XuXE97-IspACFFdk&ust=1681488844305000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiCqZygp_4CFQAAAAAdAAAAABAE",
+        'https://picsum.photos/id/239/200/300',
+        'https://i.pravatar.cc/150?u=test',
+        'https://picsum.photos/id/237/200/300',
       ],
     },
   ];
@@ -48,6 +48,7 @@ export default function PlaceScreen() {
                 location={item.Location}
                 joined={item.joined}
                 time={item.Time}
+                participants={item.participants}
               />
             )}
           />

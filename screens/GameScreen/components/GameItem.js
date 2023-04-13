@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
+import { EvilIcons } from "@expo/vector-icons/build/Icons";
+import ProfilePicturesList from "./ui/ProfilePicturesList";
 
-const GameItem = ({ title, location, time, joined }) => {
+const GameItem = ({ title, location, time, joined, participants }) => {
   const rootContainerStyle = {
     flex: 1,
     justifyContent: "center",
@@ -19,11 +21,17 @@ const GameItem = ({ title, location, time, joined }) => {
           <View style={styles.timeContainer}>
             <Text style={styles.time}>{time}</Text>
           </View>
+          <View>
+            <ProfilePicturesList urls={participants} size={30}/>
+          </View>
         </View>
 
         <View>
           <View style={styles.locationContainer}>
-            <Text style={styles.location}>{location}</Text>
+          <EvilIcons name='location' size={18} color='black' />
+            <Text style={styles.locationText}>
+            {location}
+            </Text>
           </View>
         </View>
 
@@ -49,6 +57,13 @@ const styles = StyleSheet.create({
   leftContainer:{
     flex:1,
     flexDirection:'column'
+  },
+  locationContainer:{
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  locationText:{
+    fontSize:15
   }
 });
 

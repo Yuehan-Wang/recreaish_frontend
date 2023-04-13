@@ -11,15 +11,21 @@ export default function GameScreen(){
         <View style={styles.navContainer}>
         <Tab.Navigator
           screenOptions={{
-            tabBarLabelStyle:{
+            tabBarLabelStyle: {
               fontSize: 15
             },
             tabBarActiveTintColor: "white",
             tabBarInactiveTintColor: "black",
-            tabBarIndicatorContainerStyle: {
-             display:'none'
+            tabBarIndicatorStyle: {
+              backgroundColor: "#39C4F6",
+              height: 45,
+              borderRadius:20
             },
-            
+            tabBarLabelStyle: {
+              fontSize: 16,
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+            },
             tabBarStyle: {
               backgroundColor: "#F5B502",
               position: "absolute",
