@@ -1,4 +1,6 @@
 import { View, Text, StyleSheet } from "react-native"
+import { FlatList } from "react-native";
+
 export default function TimeScreen(){
     return (
         <View style={styles.rootContainer}>

@@ -28,11 +28,12 @@ export default function Map() {
     <View style={styles.container}>
       {location && <MapView style={styles.map}
         provider={PROVIDER_GOOGLE}
+        minZoomLevel={15}
         initialRegion={{
           latitude: location.latitude,
           longitude: location.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
         }}>
 
         <Marker
@@ -45,6 +46,10 @@ export default function Map() {
         <Callout><Text>You are here</Text></Callout>
         </Marker>
       </MapView>}
+      {!location && 
+      <View style={styles.loading}>
+        <Text style={styles.loadingText}>Loading your location...</Text>
+        </View>}
 
     </View>
   );
@@ -58,4 +63,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  loading:{
+    position:'absolute',
+    left:'27%',
+    top:'40%',
+  },
+  loadingText:{
+    color:'#F5B502',
+    fontWeight:'bold'
+  }
 });
