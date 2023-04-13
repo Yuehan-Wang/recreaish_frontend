@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet } from "react-native"
-import Map from "../TimeScreen/components/Map";
+import Map from "../components/ui/Map";
 
 export default function PlaceScreen(){
+
     return (
         <View style={styles.mapContainer}>
           <Map/>
