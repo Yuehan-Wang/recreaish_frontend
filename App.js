@@ -9,6 +9,8 @@ import GameScreen from './screens/GameScreen/GameScreen';
 import ExploreScreen from './screens/ExploreScreen/ExploreScreen';
 import ChatScreen from './screens/ChatScreen/ChatScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
+import AddActivityScreen from './screens/GameScreen/AddScreens/AddActivityScreen/AddActivityScreen';
+import AddVenueScreen from './screens/GameScreen/AddScreens/AddVenueScreen/AddVenueScreen';
 
 import { Ionicons, FontAwesome, Entypo, MaterialIcons } from "@expo/vector-icons";
 
@@ -104,6 +106,16 @@ function AuthenticatedStack(){
       <Stack.Screen
         name = "AuthenticatedTab"
         component={AuthenticatedTab}
+        options={{ headerShown: false}}
+      />
+      <Stack.Screen
+        name = "AddActivityScreen"
+        component={AddActivityScreen}
+        options={{ headerShown: false}}
+      />
+      <Stack.Screen
+        name = "AddVenueScreen"
+        component={AddVenueScreen}
         options={{ headerShown: false}}
       />
     </Stack.Navigator>

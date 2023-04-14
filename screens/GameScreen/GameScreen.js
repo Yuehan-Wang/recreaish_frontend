@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet } from "react-native"
 import PlaceScreen from "./PlaceScreen/PlaceScreen";
 import TimeScreen from "./TimeScreen/TimeScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import FloatingButton from "./components/ui/FloatingButton";
 
+const stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
 export default function GameScreen() {

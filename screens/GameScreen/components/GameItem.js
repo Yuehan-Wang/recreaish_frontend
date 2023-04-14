@@ -1,13 +1,35 @@
-import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity, Alert } from "react-native";
 import { EvilIcons } from "@expo/vector-icons/build/Icons";
 import ProfilePicturesList from "./ui/ProfilePicturesList";
+import React, {useState} from "react";
 
-const GameItem = ({ title, location, time, joined, participants }) => {
+
+const GameItem = ({ title, location, time, joined: initialJoined, participants }) => {
+  const [joined, setJoined] = useState(initialJoined);
+
   const rootContainerStyle = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: joined ? '#CCFBE5' : '#D9F3FF',
+  };
+
+  const joinGame = () => {
+    Alert.alert(
+      'Join Game',
+      'Are you sure you want to join this game?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Join',
+          onPress: () => setJoined(true),
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
@@ -39,7 +61,7 @@ const GameItem = ({ title, location, time, joined, participants }) => {
                   <EvilIcons name="share-google" size={30} color="grey" />
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.button} onPress={() => console.log("Join pressed")}>
+                <TouchableOpacity style={styles.button} onPress={joinGame}>
                   <EvilIcons name="plus" size={30} color="grey" />
                 </TouchableOpacity>
               )}

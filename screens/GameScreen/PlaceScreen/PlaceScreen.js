@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,FlatList, ScrollView, SafeAreaView  } from "react-native";
 import Map from "../components/Map";
-import { FlatList } from "react-native";
 import GameItem from "../components/GameItem";
 
 export default function PlaceScreen() {
@@ -26,14 +25,40 @@ export default function PlaceScreen() {
       description: "This is item 1",
       participants: [
         'https://picsum.photos/id/239/200/300',
-        'https://i.pravatar.cc/150?u=test',
+        'https://picsum.photos/id/232/200/300',
         'https://picsum.photos/id/237/200/300',
+      ],
+    },
+    {
+      id: "3",
+      joined: 0,
+      Activity: "Morning Run",
+      Time: "01/03/2023 8:00 - 9:00",
+      Location: "Lakeview",
+      description: "This is item 1",
+      participants: [
+        'https://picsum.photos/id/239/200/300',
+        'https://picsum.photos/id/248/200/300',
+      ],
+    },
+    {
+      id: "4",
+      joined: 0,
+      Activity: "Morning Run",
+      Time: "01/03/2023 8:00 - 9:00",
+      Location: "Lakeview",
+      description: "This is item 1",
+      participants: [
+        'https://picsum.photos/id/235/200/300',
+        'https://picsum.photos/id/228/200/300',
+        'https://picsum.photos/id/258/200/300',
+        'https://picsum.photos/id/230/200/300'
       ],
     },
   ];
 
   return (
-    <View style={styles.rootContainer}>
+    <SafeAreaView  style={styles.rootContainer}>
       <View style={styles.container}>
         <View style={styles.mapContainer}>
           <Map />
@@ -54,7 +79,7 @@ export default function PlaceScreen() {
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView >
   );
   
 }
@@ -64,7 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    top:'16%',
+    top:'10%',
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -81,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   listContainer: {
-    flex: 1,
+    flex: 0.8,
     width: "90%",
     paddingHorizontal: 10,
   },

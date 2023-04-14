@@ -1,98 +1,101 @@
-import React from "react";
+import React, { useRef } from "react";
 import { View, Text, StyleSheet, Animated, TouchableWithoutFeedback } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
-export default class FloatingButton extends React.Component {
-    animation = new Animated.Value(0);
+const FloatingButton = (props) => {
+    const navigation = useNavigation();
+    const animation = useRef(new Animated.Value(0)).current;
+    const [open, setOpen] = React.useState(false);
 
-    toggleMenu = () => {
-        const toValue = this.open ? 0 : 1;
+    const toggleMenu = () => {
+        const toValue = open ? 0 : 1;
 
-        Animated.spring(this.animation, {
+        Animated.spring(animation, {
             toValue,
             friction: 5,
             useNativeDriver: false,
         }).start();
 
-        this.open = !this.open;
+        setOpen(!open);
     };
 
-    render() {
-        const pinStyle = {
-            transform: [
-                { scale: this.animation },
-                {
-                    translateY: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -80]
-                    })
-                }
-            ]
-        };
+    // The rest of your code remains the same, except for the render() method
 
-        const thumbStyle = {
-            transform: [
-                { scale: this.animation },
-                {
-                    translateY: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -140]
-                    })
-                }
-            ]
-        };
+    const pinStyle = {
+        transform: [
+            { scale: animation },
+            {
+                translateY: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -80]
+                })
+            }
+        ]
+    };
 
-        const heartStyle = {
-            transform: [
-                { scale: this.animation },
-                {
-                    translateY: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -200]
-                    })
-                }
-            ]
-        };
+    const thumbStyle = {
+        transform: [
+            { scale: animation },
+            {
+                translateY: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -140]
+                })
+            }
+        ]
+    };
 
-        const rotation = {
-            transform: [
-                {
-                    rotate: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ["0deg", "45deg"]
-                    })
-                }
-            ]
-        };
+    const heartStyle = {
+        transform: [
+            { scale: animation },
+            {
+                translateY: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -200]
+                })
+            }
+        ]
+    };
 
-        const opacity = this.animation.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [0, 0, 1]
-        });
+    const rotation = {
+        transform: [
+            {
+                rotate: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["0deg", "45deg"]
+                })
+            }
+        ]
+    };
 
-        return (
-            <View style={[styles.container, this.props.style]}>
+    const opacity = animation.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [0, 0, 1]
+    });
 
-                <TouchableWithoutFeedback>
-                    <Animated.View style={[styles.button, styles.secondary, thumbStyle, opacity]}>
-                        <Entypo name="calendar" size={20} color="#0050B6" />
-                    </Animated.View>
-                </TouchableWithoutFeedback>
+    return (
+        <View style={[styles.container, props.style]}>
 
-                <TouchableWithoutFeedback>
-                    <Animated.View style={[styles.button, styles.secondary, pinStyle, opacity]}>
-                        <Entypo name="location-pin" size={20} color="#0050B6" />
-                    </Animated.View>
-                </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("AddActivityScreen")}>
+                <Animated.View style={[styles.button, styles.secondary, thumbStyle, opacity]}>
+                    <Entypo name="calendar" size={20} color="#0050B6" />
+                </Animated.View>
+            </TouchableWithoutFeedback>
 
-                <TouchableWithoutFeedback onPress={this.toggleMenu}>
-                    <Animated.View style={[styles.button, styles.menu, rotation]}>
-                        <AntDesign name="plus" size={24} color="#FFF" />
-                    </Animated.View>
-                </TouchableWithoutFeedback>
-            </View>
-        );
-    }
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("AddVenueScreen")}>
+                <Animated.View style={[styles.button, styles.secondary, pinStyle, opacity]}>
+                    <Entypo name="location-pin" size={20} color="#0050B6" />
+                </Animated.View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={toggleMenu}>
+                <Animated.View style={[styles.button, styles.menu, rotation]}>
+                    <AntDesign name="plus" size={24} color="#FFF" />
+                </Animated.View>
+            </TouchableWithoutFeedback>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -122,3 +125,4 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF"
     }
 });
+export default FloatingButton;
