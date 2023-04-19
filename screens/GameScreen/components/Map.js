@@ -28,7 +28,7 @@ export default function Map() {
     <View style={styles.container}>
       {location && <MapView style={styles.map}
         provider={PROVIDER_GOOGLE}
-        minZoomLevel={15}
+        minZoomLevel={12}
         initialRegion={{
           latitude: location.latitude,
           longitude: location.longitude,

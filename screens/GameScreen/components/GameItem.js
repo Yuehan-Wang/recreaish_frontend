@@ -32,6 +32,35 @@ const GameItem = ({ title, location, time, joined: initialJoined, participants }
     );
   };
 
+  const formatTime = (time) => {
+    const [start, end] = time.split(' - ');
+    const [date, start_time] = start.split(' ');
+    const [end_time] = end.split(' ');
+  
+    const date_obj = new Date(date);
+    const month = date_obj.toLocaleString('default', { month: 'short' });
+    const day = date_obj.toLocaleString('default', { day: 'numeric' });
+  
+    const formatted_start_time = formatTimeOfDay(start_time);
+    const formatted_end_time = formatTimeOfDay(end_time);
+  
+    return `${month} ${day}${getOrdinalSuffix(day)} ${formatted_start_time} - ${formatted_end_time}`;
+  }
+  
+  const formatTimeOfDay = (time) => {
+    const [hours, minutes] = time.split(':');
+    const meridian = hours >= 12 ? 'pm' : 'am';
+    const formatted_hours = hours % 12 || 12;
+    return `${formatted_hours}:${minutes}${meridian}`;
+  }
+  
+  const getOrdinalSuffix = (day) => {
+    const suffixes = ["th", "st", "nd", "rd"];
+    const relevantDigits = (day < 30) ? day % 20 : day % 30;
+    const suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
+    return suffix;
+  }
+  
   return (
     <View style={[styles.rootContainer, rootContainerStyle]}>
       <View style={styles.cardContainer}>
@@ -41,7 +70,7 @@ const GameItem = ({ title, location, time, joined: initialJoined, participants }
             <Text style={styles.title}>{title}</Text>
           </View>
           <View style={styles.timeContainer}>
-            <Text style={styles.time}>{time}</Text>
+          <Text style={styles.time}>{formatTime(time)}</Text>
           </View>
           <View>
             <ProfilePicturesList urls={participants} size={30}/>

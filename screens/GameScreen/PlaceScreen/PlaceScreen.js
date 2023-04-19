@@ -33,7 +33,7 @@ export default function PlaceScreen() {
       id: "3",
       joined: 0,
       Activity: "Morning Run",
-      Time: "01/03/2023 8:00 - 9:00",
+      Time: "01/03/2023 18:00 - 19:00",
       Location: "Lakeview",
       description: "This is item 1",
       participants: [
@@ -57,29 +57,37 @@ export default function PlaceScreen() {
     },
   ];
 
-  return (
-    <SafeAreaView  style={styles.rootContainer}>
-      <View style={styles.container}>
-        <View style={styles.mapContainer}>
-          <Map />
-        </View>
-        <View style={styles.listContainer}>
-          <FlatList
-            data={items}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <GameItem
-                title={item.Activity}
-                location={item.Location}
-                joined={item.joined}
-                time={item.Time}
-                participants={item.participants}
-              />
-            )}
-          />
-        </View>
+  // Sort the items array by time in ascending order
+const sortedItems = [...items].sort((a, b) => {
+  const aTime = new Date(a.Time.split(' - ')[0]);
+  const bTime = new Date(b.Time.split(' - ')[0]);
+  return aTime - bTime;
+});
+
+return (
+  <SafeAreaView  style={styles.rootContainer}>
+    <View style={styles.container}>
+      <View style={styles.mapContainer}>
+        <Map />
       </View>
-    </SafeAreaView >
+      <View style={styles.listContainer}>
+        <FlatList
+          data={sortedItems}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <GameItem
+              title={item.Activity}
+              location={item.Location}
+              joined={item.joined}
+              time={item.Time}
+              participants={item.participants}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
+    </View>
+  </SafeAreaView>
   );
   
 }
@@ -98,7 +106,7 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     width: "88%",
-    height: "40%",
+    height: "43%",
     overflow: "hidden",
     borderRadius: 20,
     borderColor: "#F5B502",
