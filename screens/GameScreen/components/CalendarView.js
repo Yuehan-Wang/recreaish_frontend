@@ -40,6 +40,7 @@ const CalendarView = () => {
         width: 24, // Adjust this value to reduce the width of the date container
         height: 24, // Adjust this value to reduce the height of the date container
         justifyContent: 'center',
+        alignItems: 'center'
       },
     },
   }}
