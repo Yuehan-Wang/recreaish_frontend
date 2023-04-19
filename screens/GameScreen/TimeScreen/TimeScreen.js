@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet,FlatList, ScrollView, SafeAreaView  } from "react-native";
+import { View, Text, StyleSheet, FlatList, ScrollView, SafeAreaView } from "react-native";
 import GameItem from "../components/GameItem";
 import CalendarView from "../components/CalendarView";
+import React, { useState, useRef } from "react";
 
 export default function TimeScreen() {
   const items = [
@@ -8,7 +9,7 @@ export default function TimeScreen() {
       id: "1",
       joined: 0,
       Activity: "Morning Run",
-      Time: "01/03/2023 8:00 - 9:00",
+      Time: "01/10/2023 8:00 - 9:00",
       Location: "Lakeview",
       description: "This is item 1",
       participants: [
@@ -20,7 +21,7 @@ export default function TimeScreen() {
       id: "2",
       joined: 1,
       Activity: "Hiking",
-      Time: "01/04/2023 8:00 - 9:00",
+      Time: "01/11/2023 8:00 - 9:00",
       Location: "Charles Mound",
       description: "This is item 1",
       participants: [
@@ -57,39 +58,68 @@ export default function TimeScreen() {
     },
   ];
 
-  // Sort the items array by time in ascending order
-const sortedItems = [...items].sort((a, b) => {
-  const aTime = new Date(a.Time.split(' - ')[0]);
-  const bTime = new Date(b.Time.split(' - ')[0]);
-  return aTime - bTime;
-});
+  const [selectedDate, setSelectedDate] = useState(null);
+  const flatListRef = useRef(null);
 
-return (
-  <SafeAreaView  style={styles.rootContainer}>
-    <View style={styles.container}>
-    <View style={styles.calendarViewContainer}>
-        <CalendarView />
+  const onDateSelected = (date) => {
+    setSelectedDate(date);
+    const index = getIndexOfClosestItem(sortedItems, date);
+    if (index !== -1) {
+      flatListRef.current.scrollToIndex({ index, animated: true });
+    }
+  };
+
+  const getIndexOfClosestItem = (items, date) => {
+    if (!date) return -1;
+    const targetDate = new Date(date);
+    let closestIndex = -1;
+    let closestDiff = Number.MAX_VALUE;
+    items.forEach((item, index) => {
+      const itemDate = new Date(item.Time.split(" - ")[0]);
+      const diff = Math.abs(itemDate - targetDate);
+      if (diff < closestDiff) {
+        closestDiff = diff;
+        closestIndex = index;
+      }
+    });
+    return closestIndex;
+  };
+  // Sort the items array by time in ascending order
+  const sortedItems = [...items].sort((a, b) => {
+    const aTime = new Date(a.Time.split(' - ')[0]);
+    const bTime = new Date(b.Time.split(' - ')[0]);
+    return aTime - bTime;
+  });
+
+  return (
+    <SafeAreaView style={styles.rootContainer}>
+      <View style={styles.container}>
+        <View style={styles.calendarViewContainer}>
+          <CalendarView selectedDate={selectedDate}
+            onDateSelected={onDateSelected}
+            setSelectedDate={setSelectedDate} />
+        </View>
+        <View style={styles.listContainer}>
+          <FlatList
+          ref={flatListRef}
+            data={sortedItems}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <GameItem
+                title={item.Activity}
+                location={item.Location}
+                joined={item.joined}
+                time={item.Time}
+                participants={item.participants}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
       </View>
-      <View style={styles.listContainer}>
-        <FlatList
-          data={sortedItems}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <GameItem
-              title={item.Activity}
-              location={item.Location}
-              joined={item.joined}
-              time={item.Time}
-              participants={item.participants}
-            />
-          )}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
-    </View>
-  </SafeAreaView>
+    </SafeAreaView>
   );
-  
+
 }
 
 const styles = StyleSheet.create({
@@ -97,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    top:'10%',
+    top: '10%',
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -110,11 +140,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#F5B502',
     borderWidth: 2,
-    backgroundColor:'#fff',
+    backgroundColor: '#fff',
     overflow: 'hidden',
     marginBottom: 20
   },
-  
+
   listContainer: {
     flex: 0.8,
     width: "90%",

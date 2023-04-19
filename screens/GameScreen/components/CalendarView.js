@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
-const CalendarView = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
+const CalendarView = ({ selectedDate, onDateSelected, setSelectedDate }) => {
 
   const handleDayPress = (day) => {
     setSelectedDate(day.dateString);
+    onDateSelected(day.dateString);
   };
+  
 
   return (
     <View style={{ flex: 1 }}>
