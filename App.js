@@ -11,6 +11,7 @@ import ChatScreen from './screens/ChatScreen/ChatScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import AddActivityScreen from './screens/GameScreen/AddScreens/AddActivityScreen/AddActivityScreen';
 import AddVenueScreen from './screens/GameScreen/AddScreens/AddVenueScreen/AddVenueScreen';
+import SettingScreen from './screens/ProfileScreen/SettingScreen/SettingScreen';
 
 import { Ionicons, FontAwesome, Entypo, MaterialIcons } from "@expo/vector-icons";
 
@@ -116,6 +117,11 @@ function AuthenticatedStack(){
       <Stack.Screen
         name = "AddVenueScreen"
         component={AddVenueScreen}
+        options={{ headerShown: false}}
+      />
+      <Stack.Screen
+        name = "SettingScreen"
+        component={SettingScreen}
         options={{ headerShown: false}}
       />
     </Stack.Navigator>
