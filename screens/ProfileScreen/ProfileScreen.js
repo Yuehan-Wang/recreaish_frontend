@@ -3,10 +3,18 @@ const profileData = require("./profileDummy.json");
 import ProfilePictureBox from "./components/ProfilePictureBox";
 
 export default function ProfileScreen() {
-  console.log(profileData.profilePictures);
   return (
     <View style={styles.rootContainer}>
-      <ProfilePictureBox pictureUrls={profileData.profilePictures} />
+      <View style={styles.profileDataContainer}>
+        <View style={styles.photoContainer}>
+          <ProfilePictureBox pictureUrls={profileData.profilePictures} />
+        </View>
+        <View style={styles.infoContainer}>
+          <Text>Name: {profileData.name}</Text>
+          <Text>Location: {profileData.location}</Text>
+          <Text>One-liner: {profileData.oneLiner}</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -16,6 +24,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  profileDataContainer: {
+    flex: 0.7,
+    width: "100%", 
+    height: "40%", 
+  },
+  photoContainer: {
+    flex: 7, 
+  },
+  infoContainer: {
+    flex: 3, 
   },
   highlight: {
     fontWeight: "bold",

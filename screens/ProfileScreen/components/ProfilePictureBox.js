@@ -16,7 +16,7 @@ const ProfilePictureBox = ({ pictureUrls }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => changePicture('previous')}>
-        <Icon name="angle-left" size={30} style={styles.icon} />
+        <Icon name="angle-left" size={30} style={styles.iconLeft} />
       </TouchableOpacity>
       <Image
         key={pictureUrls[currentPictureIndex]}
@@ -24,7 +24,7 @@ const ProfilePictureBox = ({ pictureUrls }) => {
         style={styles.image}
       />
       <TouchableOpacity onPress={() => changePicture('next')}>
-        <Icon name="angle-right" size={30} style={styles.icon} />
+        <Icon name="angle-right" size={30} style={styles.iconRight} />
       </TouchableOpacity>
     </View>
   );
@@ -38,12 +38,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    width: 200,
-    height: 200,
-    marginHorizontal: 10,
+    width: '100%',
+    height: '100%',
+    marginHorizontal: 0,
+    zIndex:-100
   },
-  icon: {
-    marginHorizontal: 10,
+  iconLeft: {
+    position:'absolute',
+    color:'white',
+    left: 5
+  },
+  iconRight: {
+    position:'absolute',
+    color:'white',
+    right: 5
   },
 });
 
