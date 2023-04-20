@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: 'flex',
-    right:'-85%'
+    right:'-90%'
   }
 })
