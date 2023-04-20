@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
-const profileData = require("./profileDummy.json");
 import ProfilePictureBox from "./components/ProfilePictureBox";
+
+const profileData = require("./profileDummy.json");
 
 export default function ProfileScreen() {
   return (

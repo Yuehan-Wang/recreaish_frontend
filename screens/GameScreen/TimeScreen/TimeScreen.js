@@ -3,61 +3,9 @@ import GameItem from "../components/GameItem";
 import CalendarView from "../components/CalendarView";
 import React, { useState, useRef } from "react";
 
-export default function TimeScreen() {
-  const items = [
-    {
-      id: "1",
-      joined: 0,
-      Activity: "Morning Run",
-      Time: "01/10/2023 8:00 - 9:00",
-      Location: "Lakeview",
-      description: "This is item 1",
-      participants: [
-        'https://picsum.photos/id/237/200/300',
-        'https://picsum.photos/id/238/200/300',
-      ],
-    },
-    {
-      id: "2",
-      joined: 1,
-      Activity: "Hiking",
-      Time: "01/11/2023 8:00 - 9:00",
-      Location: "Charles Mound",
-      description: "This is item 1",
-      participants: [
-        'https://picsum.photos/id/239/200/300',
-        'https://picsum.photos/id/232/200/300',
-        'https://picsum.photos/id/237/200/300',
-      ],
-    },
-    {
-      id: "3",
-      joined: 0,
-      Activity: "Morning Run",
-      Time: "01/03/2023 18:00 - 19:00",
-      Location: "Lakeview",
-      description: "This is item 1",
-      participants: [
-        'https://picsum.photos/id/239/200/300',
-        'https://picsum.photos/id/248/200/300',
-      ],
-    },
-    {
-      id: "4",
-      joined: 0,
-      Activity: "Morning Run",
-      Time: "01/03/2023 8:00 - 9:00",
-      Location: "Lakeview",
-      description: "This is item 1",
-      participants: [
-        'https://picsum.photos/id/235/200/300',
-        'https://picsum.photos/id/228/200/300',
-        'https://picsum.photos/id/258/200/300',
-        'https://picsum.photos/id/230/200/300'
-      ],
-    },
-  ];
+const items  = require("../gameScreendummydata.json")
 
+export default function TimeScreen() {
   const [selectedDate, setSelectedDate] = useState(null);
   const flatListRef = useRef(null);
 
