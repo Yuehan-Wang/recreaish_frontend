@@ -1,34 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import SignupScreen from './screens/Authentication/SignupScreen/SignupScreen';
-import SigninScreen from './screens/Authentication/SigninScreen/SigninScreen';
-import GameScreen from './screens/GameScreen/GameScreen';
-import ExploreScreen from './screens/ExploreScreen/ExploreScreen';
-import ChatScreen from './screens/ChatScreen/ChatScreen';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
-import AddActivityScreen from './screens/GameScreen/AddScreens/AddActivityScreen/AddActivityScreen';
-import AddVenueScreen from './screens/GameScreen/AddScreens/AddVenueScreen/AddVenueScreen';
-import SettingScreen from './screens/ProfileScreen/SettingScreen/SettingScreen';
+import SignupScreen from "./screens/Authentication/SignupScreen/SignupScreen";
+import SigninScreen from "./screens/Authentication/SigninScreen/SigninScreen";
+import GameScreen from "./screens/GameScreen/GameScreen";
+import ExploreScreen from "./screens/ExploreScreen/ExploreScreen";
+import ChatScreen from "./screens/ChatScreen/ChatScreen";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
+import AddActivityScreen from "./screens/GameScreen/AddScreens/AddActivityScreen/AddActivityScreen";
+import AddVenueScreen from "./screens/GameScreen/AddScreens/AddVenueScreen/AddVenueScreen";
+import SettingScreen from "./screens/ProfileScreen/SettingScreen/SettingScreen";
 
-import { Ionicons, FontAwesome, Entypo, MaterialIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  FontAwesome,
+  Entypo,
+  MaterialIcons,
+} from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+//to receive if logined in/signed up data, placeholder for now
+const auth = 0;
+
 function AuthStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Signin" component={SigninScreen}
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen
+        name="Signin"
+        component={SigninScreen}
         screenOptions={{
           headerShown: false,
-        }} />
-      <Stack.Screen name="Signup" component={SignupScreen}
+        }}
+      />
+      <Stack.Screen
+        name="Signup"
+        component={SignupScreen}
         screenOptions={{
           headerShown: false,
-        }} />
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -42,7 +59,7 @@ function AuthenticatedTab() {
         showLabel: false,
         tabBarLabelStyle: {
           display: "flex",
-          color:'grey'
+          color: "grey",
         },
       }}>
       <Tab.Screen
@@ -101,42 +118,39 @@ function AuthenticatedTab() {
   );
 }
 
-function AuthenticatedStack(){
+function AuthenticatedStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name = "AuthenticatedTab"
+        name="AuthenticatedTab"
         component={AuthenticatedTab}
-        options={{ headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name = "AddActivityScreen"
+        name="AddActivityScreen"
         component={AddActivityScreen}
-        options={{ headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name = "AddVenueScreen"
+        name="AddVenueScreen"
         component={AddVenueScreen}
-        options={{ headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name = "SettingScreen"
+        name="SettingScreen"
         component={SettingScreen}
-        options={{ headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
-  )
+  );
 }
 
 function Navigation() {
   //const authCtx = useContext(AuthContext);
   return (
-    // <NavigationContainer>
-    //   {!authCtx.isAuthenticated && <AuthStack />}
-    //   {authCtx.isAuthenticated && <AuthenticatedStack />}
-    // </NavigationContainer>
     <NavigationContainer>
-      <AuthenticatedStack />
+      {!auth.isAuthenticated && <AuthStack />}
+      {auth.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
   );
 }
@@ -153,8 +167,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
