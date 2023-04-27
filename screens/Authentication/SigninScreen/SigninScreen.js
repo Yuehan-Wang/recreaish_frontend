@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/core";
+import { LinearGradient } from "expo-linear-gradient";
 
 const SigninScreen = () => {
   const navigation = useNavigation();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,32 +16,39 @@ const SigninScreen = () => {
     Alert.alert("Invalid email or password");
   };
 
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={["#39C4F6", "#3EB489", "#F5B502"]}
+      style={styles.container}
+    >
       <Text style={styles.title}>Sign In</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleSignIn}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          keyboardType="email-address"
+          placeholderTextColor="#555"
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          placeholderTextColor="#555"
+          onChangeText={setPassword}
+        />
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.link}
-        onPress={() => navigation.navigate("Signup")}>
+        onPress={() => navigation.navigate("Signup")}
+      >
         <Text style={styles.linkText}>Sign Up</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -49,39 +57,49 @@ const styles = {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 16,
+    color: "#FFF",
+    marginBottom: 32,
+  },
+  inputContainer: {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderRadius: 12,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    marginBottom: 32,
+    width: "100%",
   },
   input: {
-    width: "80%",
-    height: 40,
-    marginVertical: 8,
+    width: "100%",
+    height: 48,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    borderRadius: 12,
     paddingHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 4,
+    marginBottom: 16,
   },
   button: {
-    width: "80%",
-    height: 40,
-    marginTop: 16,
-    backgroundColor: "blue",
-    borderRadius: 4,
+    width: "100%",
+    height: 48,
+    backgroundColor: "#3EB489",
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   link: {
     position: "absolute",
     bottom: 32,
   },
   linkText: {
-    color: "blue",
+    color: "white",
     fontSize: 16,
   },
 };

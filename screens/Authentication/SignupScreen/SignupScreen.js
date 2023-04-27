@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/core";
+import { LinearGradient } from "expo-linear-gradient";
 
 const SignupScreen = () => {
   const navigation = useNavigation();
@@ -49,42 +50,50 @@ const SignupScreen = () => {
   // }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={["#39C4F6", "#3EB489", "#F5B502"]}
+      style={styles.container}
+    >
       <Text style={styles.title}>Sign Up</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        secureTextEntry
-        onChangeText={setConfirmPassword}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleSignUp}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor="#555"
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          keyboardType="email-address"
+          placeholderTextColor="#555"
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          placeholderTextColor="#555"
+          onChangeText={setPassword}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          secureTextEntry
+          placeholderTextColor="#555"
+          onChangeText={setConfirmPassword}
+        />
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.link}
-        onPress={() => navigation.navigate("Signin")}>
+        onPress={() => navigation.navigate("Signin")}
+      >
         <Text style={styles.linkText}>Sign in</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -93,44 +102,49 @@ const styles = {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 16,
+    color: "#FFF",
+    marginBottom: 32,
   },
-  subtitle: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 16,
+  inputContainer: {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderRadius: 12,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    marginBottom: 32,
+    width: "100%",
   },
   input: {
-    width: "80%",
-    height: 40,
-    marginVertical: 8,
+    width: "100%",
+    height: 48,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    borderRadius: 12,
     paddingHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 4,
+    marginBottom: 16,
   },
   button: {
-    width: "80%",
-    height: 40,
-    marginTop: 16,
-    backgroundColor: "blue",
-    borderRadius: 4,
+    width: "100%",
+    height: 48,
+    backgroundColor: "#3EB489",
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   link: {
     position: "absolute",
     bottom: 32,
   },
   linkText: {
-    color: "blue",
+    color: "white",
     fontSize: 16,
   },
 };
